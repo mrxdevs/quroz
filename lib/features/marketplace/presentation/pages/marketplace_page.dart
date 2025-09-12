@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:quroz/core/assets/colors/app_colors.dart';
 import 'package:quroz/core/assets/icons/app_icons.dart';
+import 'package:quroz/core/assets/images/app_images.dart';
 
 import 'package:quroz/core/common/widgets/svg_icon.dart';
+import 'package:quroz/features/marketplace/presentation/widget/influencer_card_widget.dart';
+import 'package:quroz/features/marketplace/presentation/widget/marketplace_filter_widget.dart';
 import 'package:quroz/features/marketplace/presentation/widget/marketplace_search_widget.dart';
 
 class MarketplacePage extends StatelessWidget {
@@ -44,78 +47,11 @@ class MarketplacePage extends StatelessWidget {
         ],
       ),
       body: Column(
-        children: [MarketplaceSearchWidget(), MarketplaceFilterWidget()],
-      ),
-    );
-  }
-}
-
-class MarketplaceFilterWidget extends StatefulWidget {
-  const MarketplaceFilterWidget({super.key});
-
-  @override
-  State<MarketplaceFilterWidget> createState() =>
-      _MarketplaceFilterWidgetState();
-}
-
-class _MarketplaceFilterWidgetState extends State<MarketplaceFilterWidget> {
-  int selectedIndex = 0;
-  List<String> filters = [
-    "For You",
-    "Recent",
-    "My Requests",
-    "Top Story",
-    "Verified",
-    "Liked",
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 36,
-      child: ListView.builder(
-        itemCount: filters.length,
-        scrollDirection: Axis.horizontal,
-
-        itemBuilder:
-            (context, index) => GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
-              child: Container(
-                height: 36,
-                margin: EdgeInsets.only(
-                  left: index == 0 ? 16 : 8,
-                  right: index == filters.length - 1 ? 16 : 0,
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  border: Border.all(
-                    color:
-                        index == selectedIndex
-                            ? AppColors.primary
-                            : AppColors.grey,
-                    width: 1,
-                  ),
-                  color:
-                      selectedIndex == index
-                          ? AppColors.primary.withValues(alpha: 0.1)
-                          : null,
-                ),
-                child: Center(
-                  child: Text(
-                    filters[index],
-                    style: TextStyle(
-                      color: AppColors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+        children: [
+          MarketplaceSearchWidget(),
+          MarketplaceFilterWidget(),
+          InfluencerCardWidget(),
+        ],
       ),
     );
   }
