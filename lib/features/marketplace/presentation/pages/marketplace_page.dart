@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quroz/core/assets/colors/app_colors.dart';
 import 'package:quroz/core/assets/icons/app_icons.dart';
-import 'package:quroz/core/assets/images/app_images.dart';
 
 import 'package:quroz/core/common/widgets/svg_icon.dart';
 import 'package:quroz/features/marketplace/presentation/widget/influencer_card_widget.dart';
@@ -46,12 +45,15 @@ class MarketplacePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          MarketplaceSearchWidget(),
-          MarketplaceFilterWidget(),
-          InfluencerCardWidget(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            MarketplaceSearchWidget(),
+            MarketplaceFilterWidget(),
+            InfluencerCardWidget(isExpanded: true),
+            InfluencerCardWidget(badge: "Highly Value"),
+          ],
+        ),
       ),
     );
   }

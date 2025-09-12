@@ -32,4 +32,5 @@ class AppIcons {
   static const String instagramIcon = 'assets/icons/instagram_icon.svg';
   static const String lifestyleIcon = 'assets/icons/lifestyle_icon.svg';
   static const String locationIcon = 'assets/icons/location_icon.svg';
+  static const String highValueIcon = 'assets/icons/high_value_icon.svg';
 }

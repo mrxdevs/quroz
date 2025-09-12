@@ -4,9 +4,17 @@ import 'package:quroz/core/assets/icons/app_icons.dart';
 import 'package:quroz/core/assets/images/app_images.dart';
 import 'package:quroz/core/common/widgets/svg_icon.dart';
 
-class InfluencerCardWidget extends StatelessWidget {
-  const InfluencerCardWidget({super.key});
+class InfluencerCardWidget extends StatefulWidget {
+  final bool? isExpanded;
+  final String? badge;
 
+  const InfluencerCardWidget({super.key, this.isExpanded, this.badge});
+
+  @override
+  State<InfluencerCardWidget> createState() => _InfluencerCardWidgetState();
+}
+
+class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,207 +25,248 @@ class InfluencerCardWidget extends StatelessWidget {
         // color: AppColors.grey1,
         border: Border.all(color: AppColors.grey2, width: 1),
       ),
-      child: Column(
+      child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          //Profile Image title and verified icon UI
-          SizedBox(
-            height: 56,
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 28,
-                  child: Image.asset(AppImages.profilePlaceholderImage),
-                ),
-                const SizedBox(width: 8),
+          Column(
+            children: [
+              //Profile Image title and verified icon UI
+              SizedBox(
+                height: 56,
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 28,
+                      child: Image.asset(AppImages.profilePlaceholderImage),
+                    ),
+                    const SizedBox(width: 8),
 
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Angel Rosser",
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          "Sales Manager at Meesho private limited",
-                          style: TextStyle(
-                            color: AppColors.grey,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      Row(
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SvgIcon(
-                            path: AppIcons.clockIcon,
-                            size: 14,
-                            color: AppColors.grey,
-                          ),
-                          const SizedBox(width: 4),
                           Text(
-                            "2s",
+                            "Angel Rosser",
                             style: TextStyle(
-                              color: AppColors.grey,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
+                              color: AppColors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
                             ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              "Sales Manager at Meesho private limited",
+                              style: TextStyle(
+                                color: AppColors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              SvgIcon(
+                                path: AppIcons.clockIcon,
+                                size: 14,
+                                color: AppColors.grey,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                "2s",
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
 
-                SvgIcon(
-                  path: AppIcons.arrowRightIcon,
-                  size: 24,
-                  color: AppColors.grey,
+                    SvgIcon(
+                      path: AppIcons.arrowRightIcon,
+                      size: 24,
+                      color: AppColors.grey,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 8),
-          // Looking for Description UI
-          SizedBox(
-            height: 28,
-            child: Row(
-              children: [
-                SvgIcon(path: AppIcons.influencerIcon, size: 24),
-                const SizedBox(width: 8),
-                Text(
-                  "Looking for Influencer marketing agency",
+              ),
+              const SizedBox(height: 8),
+              // Looking for Description UI
+              SizedBox(
+                height: 28,
+                child: Row(
+                  children: [
+                    SvgIcon(path: AppIcons.influencerIcon, size: 24),
+                    const SizedBox(width: 8),
+                    Text(
+                      "Looking for Influencer marketing agency",
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //Divider
+              const Divider(color: AppColors.grey2, thickness: 1),
+
+              //Description UI
+              SizedBox(
+                child: Text(
+                  """
+Budget: ₹1,50,000 Brand: WanderFit Luggage Location: Goa & Kerala Type: Lifestyle & Adventure travel content with a focus on young, urban audiences Language: English and Hindi Looking for a travel influencer who can showcase our premium luggage line in scenic beach and nature destinations. Content should emphasize ease of travel and durability of the product.""",
                   style: TextStyle(
                     color: AppColors.black,
                     fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
-              ],
-            ),
-          ),
-
-          //Divider
-          const Divider(color: AppColors.grey2, thickness: 1),
-
-          //Description UI
-          SizedBox(
-            child: Text(
-              """
-Budget: ₹1,50,000 Brand: WanderFit Luggage Location: Goa & Kerala Type: Lifestyle & Adventure travel content with a focus on young, urban audiences Language: English and Hindi Looking for a travel influencer who can showcase our premium luggage line in scenic beach and nature destinations. Content should emphasize ease of travel and durability of the product.""",
-              style: TextStyle(
-                color: AppColors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
               ),
-            ),
-          ),
 
-          //Location UI
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 8),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-
-                  color: AppColors.grey1,
-                ),
-                height: 28,
-                child: Row(
+              //Location UI
+              if (widget.isExpanded ?? false)
+                Column(
                   children: [
-                    SvgIcon(path: AppIcons.locationIcon, size: 14),
-                    const SizedBox(width: 8),
-                    Text(
-                      ["Banguluru, Taminadu, Kerala, Mumbai"].join(", "),
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
 
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "+1more",
+                            color: AppColors.grey1,
+                          ),
+                          height: 28,
+                          child: Row(
+                            children: [
+                              SvgIcon(path: AppIcons.locationIcon, size: 14),
+                              const SizedBox(width: 8),
+                              Text(
+                                [
+                                  "Banguluru, Taminadu, Kerala, Mumbai",
+                                ].join(", "),
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
 
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.grey,
-                          decorationThickness: 1,
-                          color: AppColors.grey,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
+                              TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "+1more",
+
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: AppColors.grey,
+                                    decorationThickness: 1,
+                                    color: AppColors.grey,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                        Spacer(),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+
+                            color: AppColors.grey1,
+                          ),
+                          height: 28,
+                          child: Row(
+                            children: [
+                              SvgIcon(path: AppIcons.instagramIcon, size: 14),
+                              const SizedBox(width: 8),
+                              Text(
+                                "10k - 100k",
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          margin: const EdgeInsets.only(top: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+
+                            color: AppColors.grey1,
+                          ),
+                          height: 28,
+                          child: Row(
+                            children: [
+                              SvgIcon(path: AppIcons.lifestyleIcon, size: 14),
+                              const SizedBox(width: 8),
+                              Text(
+                                ["Lifestyle", "Fashion"].join(", "),
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-              Spacer(),
             ],
           ),
-
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 8),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+          if (widget.badge != null && widget.badge!.isNotEmpty)
+            Positioned(
+              top: -24,
+              right: 5,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-
-                  color: AppColors.grey1,
+                  borderRadius: BorderRadius.circular(50),
+                  color: AppColors.badge1,
                 ),
-                height: 28,
                 child: Row(
                   children: [
-                    SvgIcon(path: AppIcons.instagramIcon, size: 14),
+                    SvgIcon(
+                      path: AppIcons.highValueIcon,
+                      size: 14,
+                      color: AppColors.white,
+                    ),
                     const SizedBox(width: 8),
                     Text(
-                      "10k - 100k",
+                      "High Value".toUpperCase(),
                       style: TextStyle(
-                        color: AppColors.black,
-                        fontSize: 11,
+                        color: AppColors.white,
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
-              Container(
-                margin: const EdgeInsets.only(top: 8),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-
-                  color: AppColors.grey1,
-                ),
-                height: 28,
-                child: Row(
-                  children: [
-                    SvgIcon(path: AppIcons.lifestyleIcon, size: 14),
-                    const SizedBox(width: 8),
-                    Text(
-                      ["Lifestyle", "Fashion"].join(", "),
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
         ],
       ),
     );
