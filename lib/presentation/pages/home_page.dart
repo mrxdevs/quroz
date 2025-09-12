@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quroz/core/assets/colors/app_colors.dart';
+import 'package:quroz/core/assets/icons/app_icons.dart';
+import 'package:quroz/core/common/widgets/svg_icon.dart';
 import 'package:quroz/features/account/presentation/pages/account_page.dart';
 import 'package:quroz/features/activity/presentation/pages/activity_page.dart';
 import 'package:quroz/features/explore/presentation/pages/explore_page.dart';
@@ -38,28 +41,50 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
         currentIndex: _currentIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        elevation: 0,
+        selectedItemColor: AppColors.grey,
+        unselectedItemColor: AppColors.grey,
+
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
+            icon: SvgIcon(
+              path: AppIcons.explore,
+              size: 24,
+              color: _currentIndex == 0 ? AppColors.primary : AppColors.grey,
+            ),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.store),
+            icon: SvgIcon(
+              path: AppIcons.marketplace,
+              size: 24,
+              color: _currentIndex == 1 ? AppColors.primary : AppColors.grey,
+            ),
             label: 'Marketplace',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: SvgIcon(
+              path: AppIcons.globalSearch,
+              size: 24,
+              color: _currentIndex == 2 ? AppColors.primary : AppColors.grey,
+            ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: SvgIcon(
+              path: AppIcons.activity,
+              size: 24,
+              color: _currentIndex == 3 ? AppColors.primary : AppColors.grey,
+            ),
             label: 'Activity',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: SvgIcon(
+              path: AppIcons.account,
+              size: 24,
+              color: _currentIndex == 4 ? AppColors.primary : AppColors.grey,
+            ),
             label: 'Profile',
           ),
         ],
