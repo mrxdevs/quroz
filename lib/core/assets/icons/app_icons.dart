@@ -33,4 +33,10 @@ class AppIcons {
   static const String lifestyleIcon = 'assets/icons/lifestyle_icon.svg';
   static const String locationIcon = 'assets/icons/location_icon.svg';
   static const String highValueIcon = 'assets/icons/high_value_icon.svg';
+  static const String linkedinIcon = 'assets/icons/linkedin_icon.svg';
+  static const String whatsappIcon = 'assets/icons/whatapp_icon.svg';
+  static const String playIcon = 'assets/icons/play_icon.svg';
+
+  static const String whatsappIconPng = 'assets/icons/whatapp_icon.png';
+  static const String linkedinIconPng = 'assets/icons/linkedin_icon.png';
 }

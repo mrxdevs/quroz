@@ -10,8 +10,13 @@ class AppColors {
   static const Color grey2 = Color(0xFFE9E9E9);
   static const Color grey3 = Color(0xFFE8E7EA);
   static const Color grey4 = Color(0xFFCACACA);
+  static const Color grey5 = Color(0xFF7E7E7E);
+  static const Color grey6 = Color(0xFFAAAAAA);
   static const Color black = Color(0xFF1F1F1F);
   static const Color white = Color(0xFFFFFFFF);
   static const Color badge1 = Color(0xFFFE9C13);
   static const Color badge2 = Color(0xFFFB9428);
+  static const Color greenLight = Color(0xFF66C81);
+  static const Color blueLight = Color(0xFF66C81F);
+  static const Color darkGrey = Color(0xFF1F1F1F);
 }
