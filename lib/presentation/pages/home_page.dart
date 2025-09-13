@@ -48,48 +48,87 @@ class _HomePageState extends State<HomePage> {
 
         type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(
-            icon: SvgIcon(
-              path: AppIcons.explore,
-              size: 24,
-              color: _currentIndex == 0 ? AppColors.primary : AppColors.grey,
-            ),
+          _navIcon(
+            isActive: _currentIndex == 0,
+            iconPath: AppIcons.explore,
             label: 'Explore',
+            isNew: false,
           ),
-          BottomNavigationBarItem(
-            icon: SvgIcon(
-              path: AppIcons.marketplace,
-              size: 24,
-              color: _currentIndex == 1 ? AppColors.primary : AppColors.grey,
-            ),
+          _navIcon(
+            isActive: _currentIndex == 1,
+            iconPath: AppIcons.marketplace,
             label: 'Marketplace',
+            isNew: true,
           ),
-          BottomNavigationBarItem(
-            icon: SvgIcon(
-              path: AppIcons.globalSearch,
-              size: 24,
-              color: _currentIndex == 2 ? AppColors.primary : AppColors.grey,
-            ),
+          _navIcon(
+            isActive: _currentIndex == 2,
+            iconPath: AppIcons.globalSearch,
             label: 'Search',
+            isNew: false,
           ),
-          BottomNavigationBarItem(
-            icon: SvgIcon(
-              path: AppIcons.activity,
-              size: 24,
-              color: _currentIndex == 3 ? AppColors.primary : AppColors.grey,
-            ),
+
+          _navIcon(
+            isActive: _currentIndex == 3,
+            iconPath: AppIcons.activity,
             label: 'Activity',
+            isNew: false,
           ),
-          BottomNavigationBarItem(
-            icon: SvgIcon(
-              path: AppIcons.account,
-              size: 24,
-              color: _currentIndex == 4 ? AppColors.primary : AppColors.grey,
-            ),
+
+          _navIcon(
+            isActive: _currentIndex == 4,
+            iconPath: AppIcons.account,
             label: 'Profile',
+            isNew: false,
           ),
         ],
       ),
+    );
+  }
+
+  BottomNavigationBarItem _navIcon({
+    required bool isActive,
+    required String iconPath,
+    required String label,
+    required bool isNew,
+  }) {
+    return BottomNavigationBarItem(
+      icon: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          SvgIcon(
+            path: iconPath,
+            size: 24,
+            color: isActive ? AppColors.primary : AppColors.grey,
+          ),
+          if (isNew)
+            Positioned.fill(
+              top: -10,
+              right: -15,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  width: 30,
+                  height: 15,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "New",
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 8,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+      label: label,
     );
   }
 }
