@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import 'package:quroz/features/marketplace/data/models/marketplace_item_model.dart';
@@ -9,73 +12,73 @@ abstract class MarketplaceRemoteDataSource {
   Future<PostDetailsModel> getPostDetails(String idHash);
 }
 
-class MarketplaceRemoteDataSourceImpl implements MarketplaceRemoteDataSource {
-  final Dio dio;
+// class MarketplaceRemoteDataSourceImpl implements MarketplaceRemoteDataSource {
+//   final Dio dio;
 
-  MarketplaceRemoteDataSourceImpl({required this.dio});
+//   MarketplaceRemoteDataSourceImpl({required this.dio});
 
-  @override
-  Future<List<MarketplaceItemModel>> getMarketplaceItems(int page) async {
-    try {
-      final response = await dio.get(
-        '/interview.mplist',
-        queryParameters: {'page': page},
-      );
+//   @override
+//   Future<List<MarketplaceItemModel>> getMarketplaceItems(int page) async {
+//     try {
+//       final response = await dio.get(
+//         '/interview.mplist',
+//         queryParameters: {'page': page},
+//       );
 
-      // Assuming the API response has a 'data' field that is a list of items
-      final List<dynamic> jsonList = response.data['data'] as List;
+//       // Assuming the API response has a 'data' field that is a list of items
+//       final List<dynamic> jsonList = response.data['data'] as List;
 
-      // Map the dynamic list to a list of MarketplaceItemModel
-      final items =
-          jsonList
-              .map(
-                (json) =>
-                    MarketplaceItemModel.fromJson(json as Map<String, dynamic>),
-              )
-              .toList();
+//       // Map the dynamic list to a list of MarketplaceItemModel
+//       final items =
+//           jsonList
+//               .map(
+//                 (json) =>
+//                     MarketplaceItemModel.fromJson(json as Map<String, dynamic>),
+//               )
+//               .toList();
 
-      return items;
-    } on DioException catch (e) {
-      // Catch Dio-specific errors (e.g., network issues, server errors)
-      if (e.response?.statusCode == 404) {
-        throw NotFoundException();
-      } else {
-        throw ServerException();
-      }
-    } catch (e) {
-      // Catch all other exceptions, e.g., parsing errors
-      throw ServerException();
-    }
-  }
+//       return items;
+//     } on DioException catch (e) {
+//       // Catch Dio-specific errors (e.g., network issues, server errors)
+//       if (e.response?.statusCode == 404) {
+//         throw NotFoundException();
+//       } else {
+//         throw ServerException();
+//       }
+//     } catch (e) {
+//       // Catch all other exceptions, e.g., parsing errors
+//       throw ServerException();
+//     }
+//   }
 
-  @override
-  Future<PostDetailsModel> getPostDetails(String idHash) async {
-    try {
-      final response = await dio.get(
-        '/interview.mplist',
-        queryParameters: {'id_hash': idHash},
-      );
+//   @override
+//   Future<PostDetailsModel> getPostDetails(String idHash) async {
+//     try {
+//       final response = await dio.get(
+//         '/interview.mplist',
+//         queryParameters: {'id_hash': idHash},
+//       );
 
-      // Assuming the API response returns a single JSON object for the details
-      final json = response.data as Map<String, dynamic>;
+//       // Assuming the API response returns a single JSON object for the details
+//       final json = response.data as Map<String, dynamic>;
 
-      // Map the JSON to a PostDetailsModel
-      final details = PostDetailsModel.fromJson(json);
+//       // Map the JSON to a PostDetailsModel
+//       final details = PostDetailsModel.fromJson(json);
 
-      return details;
-    } on DioException catch (e) {
-      // Catch Dio-specific errors
-      if (e.response?.statusCode == 404) {
-        throw NotFoundException();
-      } else {
-        throw ServerException();
-      }
-    } catch (e) {
-      // Catch all other exceptions, e.g., parsing errors
-      throw ServerException();
-    }
-  }
-}
+//       return details;
+//     } on DioException catch (e) {
+//       // Catch Dio-specific errors
+//       if (e.response?.statusCode == 404) {
+//         throw NotFoundException();
+//       } else {
+//         throw ServerException();
+//       }
+//     } catch (e) {
+//       // Catch all other exceptions, e.g., parsing errors
+//       throw ServerException();
+//     }
+//   }
+// }
 
 class MarketplaceRemoteDataSourceImplMock
     implements MarketplaceRemoteDataSource {
@@ -86,14 +89,15 @@ class MarketplaceRemoteDataSourceImplMock
   @override
   Future<List<MarketplaceItemModel>> getMarketplaceItems(int page) async {
     try {
-      final response = await dio.get(
-        '/interview.mplist',
-        queryParameters: {'page': page},
-      );
+      Future.delayed(const Duration(seconds: 2));
 
       // Assuming the API response has a 'data' field that is a list of items
-      
-      final List<dynamic> jsonList = response.data['data'] as List;
+
+      final jsonString =
+          await File('assets/json/marketplace_res.json').readAsString();
+
+      final data = jsonDecode(jsonString);
+      final jsonList = data['marketplace_requests'] as List;
 
       // Map the dynamic list to a list of MarketplaceItemModel
       final items =
@@ -103,6 +107,8 @@ class MarketplaceRemoteDataSourceImplMock
                     MarketplaceItemModel.fromJson(json as Map<String, dynamic>),
               )
               .toList();
+
+      print(items);
 
       return items;
     } on DioException catch (e) {
