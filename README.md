@@ -149,12 +149,20 @@ flutter run
 ## 📸 Screenshots
 
 ### Marketplace Listing
+## 📸 Screenshots
 
-![Marketplace](screenshotes/sc1.jpg)
+### Marketplace Listing
+<p align="center">
+  <img src="screenshots/sc1.jpg" alt="Marketplace"
+       width="300" height="600" style="object-fit:cover; border-radius:12px;" />
+</p>
 
 ### Single Post View
+<p align="center">
+  <img src="screenshots/sc2.jpg" alt="Single Post"
+       width="300" height="600" style="object-fit:cover; border-radius:12px;" />
+</p>
 
-![Single Post](./screenshots/sc2.png)
 
 ---
 
