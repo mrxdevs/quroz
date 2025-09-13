@@ -1,4 +1,4 @@
-com.quroz.app
+package com.quroz.app
 
 import io.flutter.embedding.android.FlutterActivity
 
