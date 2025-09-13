@@ -26,86 +26,7 @@ class _InfluencerDetailsCardWidgetState
     return Column(
       children: [
         //Profile Image title and verified icon UI
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-
-          decoration: BoxDecoration(color: AppColors.grey1),
-          height: 76,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                radius: 20,
-                child: Image.asset(AppImages.profilePlaceholderImage),
-              ),
-              const SizedBox(width: 8),
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Angel Rosser",
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      ImageIconWidget(
-                        path: AppIcons.linkedinIconPng,
-                        size: 12,
-                        borderRadius: 1,
-                      ),
-                      const SizedBox(width: 4),
-                      SvgIcon(path: AppIcons.verifiedIcon, size: 12),
-                      const SizedBox(width: 150),
-
-                      Text(
-                        "1d ago",
-                        style: TextStyle(
-                          color: AppColors.grey5,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: Text(
-                      "Sales Manager at Meesho private limited",
-                      style: TextStyle(
-                        color: AppColors.grey,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      SvgIcon(
-                        path: AppIcons.meshooIcon,
-                        size: 14,
-                        color: AppColors.grey,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        "Meshoo",
-                        style: TextStyle(
-                          color: AppColors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+        ProfileCardWidget(),
         const SizedBox(height: 8),
         // Looking for Description UI
         Container(
@@ -118,106 +39,10 @@ class _InfluencerDetailsCardWidgetState
           ),
           child: Column(
             children: [
-              SizedBox(
-                height: 50,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Looking for ",
-                      style: TextStyle(
-                        color: AppColors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-
-                    Row(
-                      children: [
-                        SvgIcon(path: AppIcons.influencerIcon, size: 24),
-                        const SizedBox(width: 8),
-                        Text(
-                          "Looking for Influencer marketing agency",
-                          style: TextStyle(
-                            color: AppColors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              LookingForWidget(),
               //Divider
               const Divider(color: AppColors.grey2, thickness: 1),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Highlights",
-                    style: TextStyle(
-                      color: AppColors.grey6,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 8),
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-
-                          color: AppColors.grey1,
-                        ),
-                        height: 28,
-                        child: Row(
-                          children: [
-                            SvgIcon(path: AppIcons.rupeeIcon, size: 14),
-                            const SizedBox(width: 8),
-                            Text(
-                              "Budget: 1,45,000",
-                              style: TextStyle(
-                                color: AppColors.grey,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        margin: const EdgeInsets.only(top: 8),
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-
-                          color: AppColors.grey1,
-                        ),
-                        height: 28,
-                        child: Row(
-                          children: [
-                            SvgIcon(path: AppIcons.announcementIcon, size: 14),
-                            const SizedBox(width: 8),
-                            Text(
-                              "Brand: Swiggy",
-                              style: TextStyle(
-                                color: AppColors.grey5,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              TopHighlightWidget(),
               const SizedBox(height: 8),
 
               //Description UI
@@ -234,146 +59,374 @@ class _InfluencerDetailsCardWidgetState
 
               const SizedBox(height: 12),
               //Share UI
+              SocialShareWidget(),
+
+              //Key Highlights UI
+              KeyHighlightWidget(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ProfileCardWidget extends StatelessWidget {
+  const ProfileCardWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+
+      decoration: BoxDecoration(color: AppColors.grey1),
+      height: 76,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 20,
+            child: Image.asset(AppImages.profilePlaceholderImage),
+          ),
+          const SizedBox(width: 8),
+
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Row(
                 children: [
-                  Expanded(
-                    child: Container(
-                      height: 36,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.green.shade100,
-                      ),
-
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ImageIconWidget(
-                            path: AppIcons.whatsappIconPng,
-                            size: 16,
-                            borderRadius: 5,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            "Share via WhatsApp",
-                            style: TextStyle(
-                              color: AppColors.grey,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
+                  Text(
+                    "Angel Rosser",
+                    style: TextStyle(
+                      color: AppColors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Container(
-                      height: 36,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.blue.shade100,
-                      ),
+                  const SizedBox(width: 4),
+                  ImageIconWidget(
+                    path: AppIcons.linkedinIconPng,
+                    size: 12,
+                    borderRadius: 1,
+                  ),
+                  const SizedBox(width: 4),
+                  SvgIcon(path: AppIcons.verifiedIcon, size: 12),
+                  const SizedBox(width: 150),
 
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ImageIconWidget(
-                            path: AppIcons.linkedinIconPng,
-                            size: 16,
-                            borderRadius: 5,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            "Share via LinkedIn",
-                            style: TextStyle(
-                              color: AppColors.grey,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
+                  Text(
+                    "1d ago",
+                    style: TextStyle(
+                      color: AppColors.grey5,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
               ),
-
-              //Key Highlights UI
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Expanded(
+                child: Text(
+                  "Sales Manager at Meesho private limited",
+                  style: TextStyle(
+                    color: AppColors.grey,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              Row(
                 children: [
-                  const SizedBox(height: 20),
+                  SvgIcon(
+                    path: AppIcons.meshooIcon,
+                    size: 14,
+                    color: AppColors.grey,
+                  ),
+                  const SizedBox(width: 4),
                   Text(
-                    "Highlights",
+                    "Meshoo",
                     style: TextStyle(
-                      color: AppColors.grey6,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      color: AppColors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
                     ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  Row(
-                    children: [
-                      HighlightCardWidget(
-                        title: "Category",
-                        description: "Lifestyle, Fashion",
-                      ),
-                      HighlightCardWidget(
-                        title: "Platform",
-                        description: "Instagram, Youtube",
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      HighlightCardWidget(
-                        title: "Language",
-                        description:
-                            "Hindi, Kannada, Malayalam, Tamil & Telugu",
-                      ),
-                      HighlightCardWidget(
-                        title: "Location",
-                        description:
-                            "Bangalore, Tamilnadu, Kerala & GoaBangalore, Tamilnadu, Kerala & GoaBangalore",
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      HighlightCardWidget(
-                        title: "Required count",
-                        description: "15 - 20",
-                      ),
-                      HighlightCardWidget(
-                        title: "Our Budget",
-                        description: "₹1,45,000",
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      HighlightCardWidget(
-                        title: "Brand collab with",
-                        description: "Swiggy",
-                      ),
-                      FollowHighlightCardWidget(
-                        title: "Required followers",
-                        description1: "500k -1M+",
-                        description2: "500k -1M+",
-                      ),
-                    ],
                   ),
                 ],
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class LookingForWidget extends StatelessWidget {
+  const LookingForWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Looking for ",
+            style: TextStyle(
+              color: AppColors.grey,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          const SizedBox(height: 6),
+
+          Row(
+            children: [
+              SvgIcon(path: AppIcons.influencerIcon, size: 24),
+              const SizedBox(width: 8),
+              Text(
+                "Looking for Influencer marketing agency",
+                style: TextStyle(
+                  color: AppColors.black,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TopHighlightWidget extends StatelessWidget {
+  const TopHighlightWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Highlights",
+          style: TextStyle(
+            color: AppColors.grey6,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+
+                color: AppColors.grey1,
+              ),
+              height: 28,
+              child: Row(
+                children: [
+                  SvgIcon(path: AppIcons.rupeeIcon, size: 14),
+                  const SizedBox(width: 8),
+                  Text(
+                    "Budget: 1,45,000",
+                    style: TextStyle(
+                      color: AppColors.grey,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              margin: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+
+                color: AppColors.grey1,
+              ),
+              height: 28,
+              child: Row(
+                children: [
+                  SvgIcon(path: AppIcons.announcementIcon, size: 14),
+                  const SizedBox(width: 8),
+                  Text(
+                    "Brand: Swiggy",
+                    style: TextStyle(
+                      color: AppColors.grey5,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class SocialShareWidget extends StatelessWidget {
+  const SocialShareWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: 36,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.green.shade100,
+            ),
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ImageIconWidget(
+                  path: AppIcons.whatsappIconPng,
+                  size: 16,
+                  borderRadius: 5,
+                ),
+                const SizedBox(width: 8),
+                _richTextTitle("WhatsApp"),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Container(
+            height: 36,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.blue.shade100,
+            ),
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ImageIconWidget(
+                  path: AppIcons.linkedinIconPng,
+                  size: 16,
+                  borderRadius: 5,
+                ),
+                const SizedBox(width: 8),
+                _richTextTitle("LinkedIn"),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  RichText _richTextTitle(String title) {
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: "Share via ",
+            style: TextStyle(
+              color: AppColors.grey,
+              fontSize: 11,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          TextSpan(
+            text: title,
+            style: TextStyle(
+              color: AppColors.grey,
+              fontSize: 11,
+
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class KeyHighlightWidget extends StatelessWidget {
+  const KeyHighlightWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 20),
+        Text(
+          "Highlights",
+          style: TextStyle(
+            color: AppColors.grey6,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 20),
+
+        Row(
+          children: [
+            HighlightCardWidget(
+              title: "Category",
+              description: "Lifestyle, Fashion",
+            ),
+            HighlightCardWidget(
+              title: "Platform",
+              description: "Instagram, Youtube",
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            HighlightCardWidget(
+              title: "Language",
+              description: "Hindi, Kannada, Malayalam, Tamil & Telugu",
+            ),
+            HighlightCardWidget(
+              title: "Location",
+              description:
+                  "Bangalore, Tamilnadu, Kerala & GoaBangalore, Tamilnadu, Kerala & GoaBangalore",
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            HighlightCardWidget(
+              title: "Required count",
+              description: "15 - 20",
+            ),
+            HighlightCardWidget(title: "Our Budget", description: "₹1,45,000"),
+          ],
+        ),
+
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            HighlightCardWidget(
+              title: "Brand collab with",
+              description: "Swiggy",
+            ),
+            FollowHighlightCardWidget(
+              title: "Required followers",
+              description1: "500k -1M+",
+              description2: "500k -1M+",
+            ),
+          ],
         ),
       ],
     );

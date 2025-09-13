@@ -6,12 +6,9 @@ class GlobalSearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Global Search'),
-      ),
-      body: Center(
-        child: Text('Global Search Page'),
-      ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(title: Text('Global Search')),
+      body: Center(child: Text('Global Search Page')),
     );
   }
 }

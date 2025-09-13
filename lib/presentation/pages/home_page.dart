@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
           ),
           if (isNew)
             Positioned.fill(
-              top: -10,
+              top: -2,
               right: -15,
               child: Align(
                 alignment: Alignment.topRight,
@@ -118,8 +118,8 @@ class _HomePageState extends State<HomePage> {
                       "New",
                       style: TextStyle(
                         color: AppColors.white,
-                        fontSize: 8,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
