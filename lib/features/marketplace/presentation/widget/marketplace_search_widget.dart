@@ -11,7 +11,7 @@ class MarketplaceSearchWidget extends StatelessWidget {
       height: 48,
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.grey, width: 1),
+        border: Border.all(color: AppColors.grey1, width: 1),
         borderRadius: BorderRadius.circular(100),
       ),
 

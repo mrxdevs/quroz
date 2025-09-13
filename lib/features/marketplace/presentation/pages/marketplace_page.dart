@@ -3,6 +3,7 @@ import 'package:quroz/core/assets/colors/app_colors.dart';
 import 'package:quroz/core/assets/icons/app_icons.dart';
 
 import 'package:quroz/core/common/widgets/svg_icon.dart';
+import 'package:quroz/features/marketplace/presentation/pages/influencer_details_page.dart';
 import 'package:quroz/features/marketplace/presentation/widget/influencer_card_widget.dart';
 import 'package:quroz/features/marketplace/presentation/widget/marketplace_filter_widget.dart';
 import 'package:quroz/features/marketplace/presentation/widget/marketplace_search_widget.dart';
@@ -50,8 +51,24 @@ class MarketplacePage extends StatelessWidget {
           children: [
             MarketplaceSearchWidget(),
             MarketplaceFilterWidget(),
-            InfluencerCardWidget(isExpanded: true),
-            InfluencerCardWidget(badge: "Highly Value"),
+
+            ...List.generate(
+              10,
+              (index) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const InfluencerDetailsPage(),
+                    ),
+                  );
+                },
+                child: InfluencerCardWidget(
+                  isExpanded: true,
+                  badge: "Highly Value",
+                ),
+              ),
+            ),
           ],
         ),
       ),
