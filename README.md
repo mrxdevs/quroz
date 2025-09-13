@@ -1,16 +1,11 @@
-# quroz
+# Quroz
 
-A new Flutter project.
+Quroz is a **Flutter application** built to showcase a clean, scalable, and maintainable project structure.
+The app follows **Clean Architecture** principles to ensure a clear separation of concerns between the UI, business logic, and data layers.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🏗️ Architecture
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The project is organized into distinct layers, each with a specific responsibility.  
+This structure helps in creating a **modular, testable, and maintainable** codebase.
