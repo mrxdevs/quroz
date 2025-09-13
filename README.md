@@ -150,11 +150,11 @@ flutter run
 
 ### Marketplace Listing
 
-![Marketplace](screenshots/sc1.png)
+![Marketplace](./screenshots/sc1.png)
 
 ### Single Post View
 
-![Single Post](screenshots/sc2.png)
+![Single Post](./screenshots/sc2.png)
 
 ---
 
