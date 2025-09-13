@@ -8,12 +8,23 @@ import 'package:quroz/features/marketplace/presentation/widget/influencer_card_w
 import 'package:quroz/features/marketplace/presentation/widget/marketplace_filter_widget.dart';
 import 'package:quroz/features/marketplace/presentation/widget/marketplace_search_widget.dart';
 
-class MarketplacePage extends StatelessWidget {
+class MarketplacePage extends StatefulWidget {
   const MarketplacePage({super.key});
+
+  @override
+  State<MarketplacePage> createState() => _MarketplacePageState();
+}
+
+class _MarketplacePageState extends State<MarketplacePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(

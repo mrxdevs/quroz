@@ -1,0 +1,48 @@
+{
+    "ok": true,
+    "web_marketplace_requests": {
+      "id_hash": "instagram-youtube-education-talent-management-agencies-arabic-assamese-9f9327bbe3064dcb9c5849c846d62611",
+      "user_details": {
+        "name": "Ashlin Shalini",
+        "profile_image": "https://sgp1.digitaloceanspaces.com/test-hashfame/user_profile_images/image_cropper_698F8B2A-08AD-45D4-A216-279C658094E9-12247-0000000A627AFA42_2025-08-01_05-40-15.jpg",
+        "company": null,
+        "designation": null
+      },
+      "is_high_value": true,
+      "created_at": "1 month ago",
+      "created_at_date": "2025-08-07",
+      "description": "This is a request to check the campaign in the marketplace request in creator side",
+      "request_details": {
+        "followers_range": {
+          "ig_followers_min": "500k",
+          "ig_followers_max": "1m",
+          "yt_subscribers_min": "100k",
+          "yt_subscribers_max": "1m"
+        },
+        "categories": [
+          "Education"
+        ],
+        "creator_count_min": 25,
+        "creator_count_max": 50,
+        "budget": "13,444",
+        "brand": "fffhajg",
+        "languages": [
+          "Arabic",
+          "Assamese",
+          "Banjari"
+        ],
+        "platform": [
+          "Instagram",
+          "YouTube"
+        ]
+      },
+      "status": "approved",
+      "service_type": "Talent Management Agencies",
+      "target_audience": "Agencies",
+      "is_open": true,
+      "is_pan_india": true,
+      "any_language": false,
+      "is_deal_closed": false,
+      "slug": "instagram youtube education talent management agencies arabic assamese 9f9327bb"
+    }
+  }

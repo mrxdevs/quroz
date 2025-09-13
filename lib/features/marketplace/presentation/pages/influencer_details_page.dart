@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quroz/core/assets/colors/app_colors.dart';
 import 'package:quroz/core/assets/icons/app_icons.dart';
+import 'package:quroz/core/common/methods/show_toast.dart';
 import 'package:quroz/core/common/widgets/svg_icon.dart';
 import 'package:quroz/features/marketplace/presentation/widget/influencer_details_card_widget.dart';
+import 'package:quroz/features/marketplace/presentation/widget/post_notice_widget.dart';
 
 class InfluencerDetailsPage extends StatefulWidget {
   const InfluencerDetailsPage({super.key});
@@ -12,10 +14,16 @@ class InfluencerDetailsPage extends StatefulWidget {
 }
 
 class _InfluencerDetailsPageState extends State<InfluencerDetailsPage> {
+  bool isShowNotice = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: SvgIcon(
             path: AppIcons.arrowBackIcon,
@@ -62,8 +70,40 @@ class _InfluencerDetailsPageState extends State<InfluencerDetailsPage> {
           ),
         ],
       ),
-      body: Column(
-        children: [const InfluencerDetailsCardWidget(isExpanded: true)],
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                const InfluencerDetailsCardWidget(isExpanded: true),
+                const SizedBox(height: 200),
+              ],
+            ),
+          ),
+          if (isShowNotice)
+            PostNoticeWidget(
+              onEdit: () {
+                setState(() {
+                  isShowNotice = false;
+                  showSuccessToast(
+                    context,
+                    "Coming Soon!",
+                    "This feature will be available soon",
+                  );
+                });
+              },
+              onDelete: () {
+                setState(() {
+                  isShowNotice = false;
+                  showSuccessToast(
+                    context,
+                    "Post deleted successfully",
+                    "The post will no longer be visible to your followers",
+                  );
+                });
+              },
+            ),
+        ],
       ),
     );
   }
