@@ -15,7 +15,11 @@ class _InfluencerDetailsPageState extends State<InfluencerDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: SvgIcon(
             path: AppIcons.arrowBackIcon,
@@ -62,8 +66,13 @@ class _InfluencerDetailsPageState extends State<InfluencerDetailsPage> {
           ),
         ],
       ),
-      body: Column(
-        children: [const InfluencerDetailsCardWidget(isExpanded: true)],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const InfluencerDetailsCardWidget(isExpanded: true),
+            const SizedBox(height: 200),
+          ],
+        ),
       ),
     );
   }

@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         onTap: onTabTapped,
         currentIndex: _currentIndex,
         elevation: 0,
