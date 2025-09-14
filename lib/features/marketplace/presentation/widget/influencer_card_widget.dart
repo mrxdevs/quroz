@@ -265,7 +265,7 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
                               SvgIcon(path: AppIcons.instagramIcon, size: 14),
                               const SizedBox(width: 8),
                               Text(
-                                "10k - 100k",
+                                "${widget.marketplaceItem.igFollowersMin ?? "N/A"} - ${widget.marketplaceItem.igFollowersMax ?? "N/A"}",
                                 style: TextStyle(
                                   color: AppColors.grey,
                                   fontSize: 11,
@@ -290,7 +290,8 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
                               SvgIcon(path: AppIcons.lifestyleIcon, size: 14),
                               const SizedBox(width: 8),
                               Text(
-                                ["Lifestyle", "Fashion"].join(", "),
+                                widget.marketplaceItem.categories?.join(", ") ??
+                                    "N/A",
                                 style: TextStyle(
                                   color: AppColors.grey,
                                   fontSize: 11,

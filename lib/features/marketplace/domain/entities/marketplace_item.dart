@@ -14,12 +14,18 @@ class MarketplaceItem extends Equatable {
   final String? targetAudience;
   final bool? isOpen;
   final bool? isPanIndia;
-  final List<String>? languages;
-  final List<String>? locations;
+  final List<dynamic>? languages;
+  final List<dynamic>? locations;
   final bool? isDealClosed;
   final String? budget;
   final String? brand;
   final String? slug;
+  final String? igFollowersMin;
+  final String? igFollowersMax;
+  final String? ytSubscribersMin;
+  final String? ytSubscribersMax;
+  final List<dynamic>? categories;
+  final List<dynamic>? platform;
 
   const MarketplaceItem({
     required this.id,
@@ -41,6 +47,12 @@ class MarketplaceItem extends Equatable {
     this.brand,
     this.slug,
     this.budget,
+    this.igFollowersMin,
+    this.igFollowersMax,
+    this.ytSubscribersMin,
+    this.ytSubscribersMax,
+    this.categories,
+    this.platform,
   });
 
   @override
@@ -64,5 +76,11 @@ class MarketplaceItem extends Equatable {
     brand,
     slug,
     budget,
+    igFollowersMin,
+    igFollowersMax,
+    ytSubscribersMin,
+    ytSubscribersMax,
+    categories,
+    platform,
   ];
 }
