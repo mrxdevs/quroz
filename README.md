@@ -171,16 +171,12 @@ flutter run
 <p align="center">
   <img src="screenshotes/1.png" alt="Single Post"
        width="300" height="600" style="object-fit:cover; border-radius:12px;" />
-</p>
-p align="center">
+
+
   <img src="screenshotes/2.png" alt="Single Post"
        width="300" height="600" style="object-fit:cover; border-radius:12px;" />
-</p>
-p align="center">
-  <img src="screenshotes/3.png" alt="Single Post"
-       width="300" height="600" style="object-fit:cover; border-radius:12px;" />
-</p>
-p align="center">
+
+
   <img src="screenshotes/4.png" alt="Single Post"
        width="300" height="600" style="object-fit:cover; border-radius:12px;" />
 </p>
