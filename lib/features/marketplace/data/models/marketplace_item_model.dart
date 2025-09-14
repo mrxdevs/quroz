@@ -21,6 +21,12 @@ class MarketplaceItemModel extends MarketplaceItem {
     super.brand,
     super.slug,
     super.budget,
+    super.igFollowersMin,
+    super.igFollowersMax,
+    super.ytSubscribersMin,
+    super.ytSubscribersMax,
+    super.categories,
+    super.platform,
   });
 
   factory MarketplaceItemModel.fromJson(Map<String, dynamic> json) {
@@ -38,17 +44,27 @@ class MarketplaceItemModel extends MarketplaceItem {
       targetAudience: json['target_audience'],
       isOpen: json['is_open'],
       isPanIndia: json['is_pan_india'],
-      languages: json['languages'],
-      locations: json['locations'],
+      languages: json['request_details']?['languages'],
+      locations: json['request_details']?['cities'],
       isDealClosed: json['is_deal_closed'],
       brand: json['brand'],
       slug: json['slug'],
-      budget: json['budget'],
+      budget: json['request_details']?['budget'],
+      categories: json['request_details']?['categories'],
+      igFollowersMin:
+          json['request_details']?['followers_range']?['ig_followers_min'],
+      igFollowersMax:
+          json['request_details']?['followers_range']?['ig_followers_max'],
+      ytSubscribersMin:
+          json['request_details']?['followers_range']?['yt_subscribers_min'],
+      ytSubscribersMax:
+          json['request_details']?['followers_range']?['yt_subscribers_max'],
+      platform: json['request_details']?['platform'],
     );
   }
 
   @override
   String toString() {
-    return 'MarketplaceItemModel(id: $id, name: $name, profileImage: $profileImage, company: $company, designation: $designation, isHighValue: $isHighValue, createdAt: $createdAt, createdAtDate: $createdAtDate, description: $description, serviceType: $serviceType, targetAudience: $targetAudience, isOpen: $isOpen, isPanIndia: $isPanIndia, languages: $languages, locations: $locations, isDealClosed: $isDealClosed, brand: $brand, slug: $slug, budget: $budget)';
+    return 'MarketplaceItemModel(id: $id, name: $name, profileImage: $profileImage, company: $company, designation: $designation, isHighValue: $isHighValue, createdAt: $createdAt, createdAtDate: $createdAtDate, description: $description, serviceType: $serviceType, targetAudience: $targetAudience, isOpen: $isOpen, isPanIndia: $isPanIndia, languages: $languages, locations: $locations, isDealClosed: $isDealClosed, brand: $brand, slug: $slug, budget: $budget, categories: $categories, platform: $platform, igFollowersMin: $igFollowersMin, igFollowersMax: $igFollowersMax, ytSubscribersMin: $ytSubscribersMin, ytSubscribersMax: $ytSubscribersMax) ';
   }
 }
