@@ -3,13 +3,19 @@ import 'package:quroz/core/assets/colors/app_colors.dart';
 import 'package:quroz/core/assets/icons/app_icons.dart';
 import 'package:quroz/core/assets/images/app_images.dart';
 import 'package:quroz/core/common/widgets/svg_icon.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:quroz/features/marketplace/data/models/marketplace_item_model.dart';
 
 class InfluencerCardWidget extends StatefulWidget {
   final bool? isExpanded;
   final String? badge;
+  final MarketplaceItemModel marketplaceItem;
 
-  const InfluencerCardWidget({super.key, this.isExpanded, this.badge});
+  const InfluencerCardWidget({
+    super.key,
+    this.isExpanded,
+    this.badge,
+    required this.marketplaceItem,
+  });
 
   @override
   State<InfluencerCardWidget> createState() => _InfluencerCardWidgetState();
@@ -30,6 +36,7 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
         clipBehavior: Clip.none,
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Profile Image title and verified icon UI
               SizedBox(
@@ -47,7 +54,7 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Angel Rosser",
+                            widget.marketplaceItem.name ?? "Unnamed",
                             style: TextStyle(
                               color: AppColors.black,
                               fontSize: 14,
@@ -56,7 +63,7 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
                           ),
                           Expanded(
                             child: Text(
-                              "Sales Manager at Meesho private limited",
+                              "${widget.marketplaceItem.designation ?? "Employee"} at ${widget.marketplaceItem.company ?? "Some Company"}",
                               style: TextStyle(
                                 color: AppColors.grey,
                                 fontSize: 12,
@@ -65,15 +72,20 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
                             ),
                           ),
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              SvgIcon(
-                                path: AppIcons.clockIcon,
-                                size: 14,
-                                color: AppColors.grey,
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: SvgIcon(
+                                  path: AppIcons.clockIcon,
+                                  size: 14,
+                                  color: AppColors.grey,
+                                ),
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                "2s",
+                                widget.marketplaceItem.createdAt ?? "",
                                 style: TextStyle(
                                   color: AppColors.grey,
                                   fontSize: 12,
@@ -97,17 +109,19 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
               const SizedBox(height: 8),
               // Looking for Description UI
               SizedBox(
-                height: 28,
                 child: Row(
                   children: [
                     SvgIcon(path: AppIcons.influencerIcon, size: 24),
                     const SizedBox(width: 8),
-                    Text(
-                      "Looking for Influencer marketing agency",
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                    Expanded(
+                      child: Text(
+                        widget.marketplaceItem.slug ?? "",
+                        maxLines: 3,
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
@@ -119,14 +133,66 @@ class _InfluencerCardWidgetState extends State<InfluencerCardWidget> {
 
               //Description UI
               SizedBox(
-                child: Text(
-                  """
-Budget: ₹1,50,000 Brand: WanderFit Luggage Location: Goa & Kerala Type: Lifestyle & Adventure travel content with a focus on young, urban audiences Language: English and Hindi Looking for a travel influencer who can showcase our premium luggage line in scenic beach and nature destinations. Content should emphasize ease of travel and durability of the product.""",
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (widget.marketplaceItem.budget != null)
+                      Text(
+                        "Budget: ${widget.marketplaceItem.budget}",
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    if (widget.marketplaceItem.brand != null)
+                      Text(
+                        "Brand: ${widget.marketplaceItem.brand}",
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    if (widget.marketplaceItem.locations != null &&
+                        widget.marketplaceItem.locations!.isNotEmpty)
+                      Text(
+                        "Location: ${widget.marketplaceItem.locations!.join(", ")}",
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    if (widget.marketplaceItem.serviceType != null)
+                      Text(
+                        "Type: ${widget.marketplaceItem.serviceType}",
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    if (widget.marketplaceItem.languages != null &&
+                        widget.marketplaceItem.languages!.isNotEmpty)
+                      Text(
+                        "Language: ${widget.marketplaceItem.languages!.join(", ")}",
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    if (widget.marketplaceItem.description != null)
+                      Text(
+                        widget.marketplaceItem.description ?? "",
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                  ],
                 ),
               ),
 
@@ -150,9 +216,8 @@ Budget: ₹1,50,000 Brand: WanderFit Luggage Location: Goa & Kerala Type: 
                               SvgIcon(path: AppIcons.locationIcon, size: 14),
                               const SizedBox(width: 8),
                               Text(
-                                [
-                                  "Banguluru, Taminadu, Kerala, Mumbai",
-                                ].join(", "),
+                                widget.marketplaceItem.locations?.join(", ") ??
+                                    "N/A",
                                 style: TextStyle(
                                   color: AppColors.grey,
                                   fontSize: 11,
@@ -160,21 +225,24 @@ Budget: ₹1,50,000 Brand: WanderFit Luggage Location: Goa & Kerala Type: 
                                 ),
                               ),
 
-                              TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "+1more",
+                              if ((widget.marketplaceItem.locations?.length ??
+                                      0) >
+                                  3)
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "+1more",
 
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.grey,
-                                    decorationThickness: 1,
-                                    color: AppColors.grey,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: AppColors.grey,
+                                      decorationThickness: 1,
+                                      color: AppColors.grey,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
@@ -238,7 +306,7 @@ Budget: ₹1,50,000 Brand: WanderFit Luggage Location: Goa & Kerala Type: 
                 ),
             ],
           ),
-          if (widget.badge != null && widget.badge!.isNotEmpty)
+          if (widget.marketplaceItem.isHighValue != null)
             Positioned(
               top: -24,
               right: 5,

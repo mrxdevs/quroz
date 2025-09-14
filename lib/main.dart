@@ -15,9 +15,7 @@ Future<void> main() async {
   final dio = Dio(
     BaseOptions(baseUrl: "https://staging1.hashfame.com/api/v1/"),
   );
-  final marketplaceRemoteDataSource = MarketplaceRemoteDataSourceImplMock(
-    dio: dio,
-  );
+  final marketplaceRemoteDataSource = MarketplaceRemoteDataSourceImpl(dio: dio);
   final marketplaceRepository = MarketplaceRepositoryImpl(
     remoteDataSource: marketplaceRemoteDataSource,
   );

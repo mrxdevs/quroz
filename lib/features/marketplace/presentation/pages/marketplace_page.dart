@@ -4,8 +4,10 @@ import 'package:quroz/core/assets/icons/app_icons.dart';
 import 'package:quroz/core/common/widgets/no_data_widget.dart';
 
 import 'package:quroz/core/common/widgets/svg_icon.dart';
+import 'package:quroz/features/marketplace/data/datasources/marketplace_remote_data_source.dart';
 import 'package:quroz/features/marketplace/data/models/marketplace_item_model.dart';
 import 'package:quroz/features/marketplace/presentation/pages/influencer_details_page.dart';
+import 'package:quroz/features/marketplace/presentation/widget/influencer_card_shimmer.dart';
 import 'package:quroz/features/marketplace/presentation/widget/influencer_card_widget.dart';
 import 'package:quroz/features/marketplace/presentation/widget/marketplace_filter_widget.dart';
 import 'package:quroz/features/marketplace/presentation/widget/marketplace_search_widget.dart';
@@ -18,13 +20,31 @@ class MarketplacePage extends StatefulWidget {
 }
 
 class _MarketplacePageState extends State<MarketplacePage> {
+  List<MarketplaceItemModel>? marketplaceItems;
+  bool isLoading = false;
+
   @override
   void initState() {
     super.initState();
+    _loadData();
   }
 
-  List<MarketplaceItemModel>? marketplaceItems;
-  
+  //Load Market place data from loading
+  _loadData() {
+    if (mounted) {
+      setState(() {
+        isLoading = true;
+      });
+    }
+    MarketplaceRemoteDataSourceImplMock().getMarketplaceItems(1).then((value) {
+      if (mounted) {
+        setState(() {
+          marketplaceItems = value;
+          isLoading = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,17 +94,24 @@ class _MarketplacePageState extends State<MarketplacePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const InfluencerDetailsPage(),
+                          builder: (context) => InfluencerDetailsPage(),
                         ),
                       );
                     },
                     child: InfluencerCardWidget(
                       isExpanded: true,
                       badge: "Highly Value",
+                      marketplaceItem: item,
                     ),
                   ),
                 ) ??
-                [],
+                [if (!isLoading) NoDataWidget(msg: "Oh!, No Post Found")],
+
+            if (isLoading)
+              ...List.generate(
+                3,
+                (index) => const InfluencerCardWidgetShimmer(isExpanded: true),
+              ),
           ],
         ),
       ),
