@@ -3,6 +3,7 @@ import 'package:quroz/core/assets/colors/app_colors.dart';
 import 'package:quroz/core/assets/icons/app_icons.dart';
 import 'package:quroz/core/assets/images/app_images.dart';
 import 'package:quroz/core/common/widgets/svg_icon.dart';
+import 'package:shimmer/shimmer.dart';
 
 class InfluencerCardWidget extends StatefulWidget {
   final bool? isExpanded;
