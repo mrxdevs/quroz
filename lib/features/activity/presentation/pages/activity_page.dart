@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quroz/core/common/widgets/empty_page_mock.dart';
 
 class ActivityPage extends StatelessWidget {
   const ActivityPage({super.key});
@@ -8,7 +9,7 @@ class ActivityPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(title: Text('Activity')),
-      body: Center(child: Text('Activity Page')),
+      body: EmptyPageMock(),
     );
   }
 }
